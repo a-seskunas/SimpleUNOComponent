@@ -49,7 +49,7 @@ using namespace ::com::sun::star::uno; // for basic types
  
 namespace my_sc_impl {
 
-    // component operations for MyService1Impl
+    // service operations for MyService1Impl
     Sequence< OUString > getSupportedServiceNames_MyService1Impl()
     {
         Sequence<OUString> names(1);

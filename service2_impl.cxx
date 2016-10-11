@@ -53,7 +53,7 @@ using namespace ::com::sun::star::uno; // for basic types
 
 namespace my_sc_impl {
     
-    // component operations for MyService2Impl
+    // service operations for MyService2Impl
     Sequence< OUString > getSupportedServiceNames_MyService2Impl()
     {
         Sequence<OUString> names(1);
@@ -100,7 +100,7 @@ namespace my_sc_impl {
 
     };
 
-    // component operations from service1_impl.cxx
+    // service operations from service1_impl.cxx
     extern Sequence< OUString > SAL_CALL getSupportedServiceNames_MyService1Impl();
     extern OUString SAL_CALL getImplementationName_MyService1Impl();
     extern Reference< XInterface > SAL_CALL create_MyService1Impl( Reference< XComponentContext > const & xContext );
@@ -170,7 +170,7 @@ namespace my_sc_impl {
 
 
 
-    // This struct makes it easy to implement the extern "C" exported functions
+    // This struct makes it easy to implement the extern "C" exported component operations
     // using helper functions.
     static struct ::cppu::ImplementationEntry s_component_entries [] =  
         {
@@ -192,17 +192,17 @@ namespace my_sc_impl {
 }
 
 
-// Exported functions
+// Exported component operations
 
-extern "C" // Skip g++'s function name decorations
+extern "C" // To skip g++'s function name decorations
 {
 
     SAL_DLLPUBLIC_EXPORT void * SAL_CALL component_getFactory(
 			      sal_Char const * implName, lang::XMultiServiceFactory * xMgr,
 			      registry::XRegistryKey * xRegistry )
     {
-	return ::cppu::component_getFactoryHelper(
-		 implName, xMgr, xRegistry, ::my_sc_impl::s_component_entries );
+        return ::cppu::component_getFactoryHelper(
+               implName, xMgr, xRegistry, ::my_sc_impl::s_component_entries );
     }
 
     SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment(

@@ -204,17 +204,17 @@ $(SAMPLE_NAME) : $(COMP_REGISTERFLAG) $(APP1_BINARY)
 	@echo --------
 	@echo The simple C++ component was installed if SDK_AUTO_DEPLOYMENT = YES.
 	@echo You can use this component inside your office installation, see the example
-	@echo description. You can also load the "$(QM)SimpleComponent.odt$(QM)" document containing
+	@echo description. You can also load the "$(QM)SimpleComponent.ods$(QM)" document containing
 	@echo a StarBasic macro which uses this component.
 	@echo -
-	@echo $(MAKE) SimpleComponent.odt.load
+	@echo $(MAKE) SimpleComponent.ods.load
 	@echo --------------------------------------------------------------------------------
 
 %.run: $(OUT_BIN)/%$(EXE_EXT)
 	$(subst /,$(PS),$(OUT_BIN))$(PS)$(basename $@)
 #	cd $(subst /,$(PS),$(OUT_BIN)) && $(basename $@)
 
-SimpleComponent.odt.load : $(COMP_REGISTERFLAG)
+SimpleComponent.ods.load : $(COMP_REGISTERFLAG)
 	"$(OFFICE_PROGRAM_PATH)$(PS)soffice" $(basename $@)
 
 .PHONY: clean
