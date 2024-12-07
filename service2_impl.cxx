@@ -86,17 +86,18 @@ namespace my_sc_impl {
         // no need to implement XInterface, XTypeProvider, XWeak
 
         // XServiceInfo methods
-        virtual OUString SAL_CALL getImplementationName() throw( RuntimeException );
-        virtual sal_Bool SAL_CALL supportsService( OUString const & serviceName ) throw (RuntimeException);
-        virtual Sequence< OUString >  SAL_CALL getSupportedServiceNames() throw (RuntimeException);
+        virtual OUString SAL_CALL getImplementationName();
+        virtual sal_Bool SAL_CALL supportsService( OUString const & serviceName );
+        virtual Sequence< OUString >  SAL_CALL getSupportedServiceNames();
 
         // XSomething methods
-        virtual OUString SAL_CALL methodOne( OUString const & str ) throw (RuntimeException);
-        virtual OUString SAL_CALL methodTwo() throw (RuntimeException);
+        virtual OUString SAL_CALL methodOne( OUString const & str );
+        virtual OUString SAL_CALL methodTwo();
+	virtual OUString SAL_CALL methodThree( OUString const & str );
 
         // XInitialization will be called upon
         // createInstanceWithArguments[AndContext]()
-        virtual void SAL_CALL initialize( Sequence< Any > const & args ) throw (Exception);
+        virtual void SAL_CALL initialize( Sequence< Any > const & args );
 
     };
 
@@ -108,40 +109,38 @@ namespace my_sc_impl {
 
     // XServiceInfo implementation
     OUString MyService2Impl::getImplementationName()
-        throw (RuntimeException)
     {
         // unique implementation name
         return getImplementationName_MyService2Impl();
     }
     sal_Bool MyService2Impl::supportsService( OUString const & serviceName )
-        throw (RuntimeException)
     {
         return cppu::supportsService(this, serviceName);
     }
     Sequence< OUString > MyService2Impl::getSupportedServiceNames()
-        throw (RuntimeException)
     {
         return getSupportedServiceNames_MyService2Impl();
     }
 
     // XSomething implementation
     OUString MyService2Impl::methodOne( OUString const & str )
-        throw (RuntimeException)
     {
         m_sArg = str;
         return OUString("called methodOne() of MyService2 implementation: ") + m_sArg;
     }
 
     OUString MyService2Impl::methodTwo()
-        throw (RuntimeException)
     {
         return OUString("called methodTwo() of MyService2 implementation: ") + m_sArg;
     }
 
+    OUString MyService2Impl::methodThree( OUString const & str)
+    {
+	return OUString("Hello: ") + str;
+    }
 
     // XInitialization implementation
     void MyService2Impl::initialize( Sequence< Any > const & args )
-        throw (Exception)
     {
         if (args.getLength() != 1) {
             throw lang::IllegalArgumentException(
@@ -198,7 +197,7 @@ extern "C" // To skip g++'s function name decorations
 {
 
     SAL_DLLPUBLIC_EXPORT void * SAL_CALL component_getFactory(
-			      sal_Char const * implName, lang::XMultiServiceFactory * xMgr,
+			      char const * implName, lang::XMultiServiceFactory * xMgr,
 			      registry::XRegistryKey * xRegistry )
     {
         return ::cppu::component_getFactoryHelper(

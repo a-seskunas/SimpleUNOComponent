@@ -45,6 +45,7 @@ module inco { module niocs { module test {
     {
         string methodOne( [in] string val );
         string methodTwo();
+        string methodThree( [in] string val );
     };
 
     service MyService1 : XSomething;

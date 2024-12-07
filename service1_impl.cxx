@@ -72,45 +72,52 @@ namespace my_sc_impl {
     public:
 	
         // XServiceInfo methods
-        virtual OUString SAL_CALL getImplementationName() throw( RuntimeException );
-        virtual sal_Bool SAL_CALL supportsService( OUString const & serviceName ) throw (RuntimeException);
-        virtual Sequence< OUString >  SAL_CALL getSupportedServiceNames() throw (RuntimeException);
+        virtual OUString SAL_CALL getImplementationName() noexcept(false);
+        virtual sal_Bool SAL_CALL supportsService( OUString const & serviceName ) noexcept(false);
+        virtual Sequence< OUString >  SAL_CALL getSupportedServiceNames() noexcept(false);
 
         // XSomething methods
-        virtual OUString SAL_CALL methodOne( OUString const & str ) throw (RuntimeException);
-        virtual OUString SAL_CALL methodTwo() throw (RuntimeException);
+        virtual OUString SAL_CALL methodOne( OUString const & str ) noexcept(false);
+        virtual OUString SAL_CALL methodTwo() noexcept(false);
+	virtual OUString SAL_CALL methodThree( OUString const & str ) noexcept(false);
 
     };
 
     // XServiceInfo implementation
     OUString MyService1Impl::getImplementationName()
-        throw (RuntimeException)
+        noexcept(false)
     {
         // unique implementation name
         return getImplementationName_MyService1Impl();
     }
     sal_Bool MyService1Impl::supportsService( OUString const & serviceName )
-        throw (RuntimeException)
+	noexcept(false)
     {
         return cppu::supportsService(this, serviceName);
     }
     Sequence< OUString > MyService1Impl::getSupportedServiceNames()
-        throw (RuntimeException)
+        noexcept(false)
     {
         return getSupportedServiceNames_MyService1Impl();
     }
 
     // XSomething implementation
     OUString MyService1Impl::methodOne( OUString const & str )
-        throw (RuntimeException)
+        noexcept(false)
     {
         return OUString("called methodOne() of MyService1 implementation: ") + str;
     }
 
     OUString MyService1Impl::methodTwo()
-        throw (RuntimeException)
+        noexcept(false)
     {
         return OUString("called methodTwo() of MyService1 implementation: ");
+    }
+
+    OUString MyService1Impl::methodThree( OUString const & str )
+	    noexcept(false)
+    {
+	return OUString("Hello my name is: ") + str;
     }
 
 
