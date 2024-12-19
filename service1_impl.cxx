@@ -41,6 +41,8 @@
 #include <com/sun/star/lang/XInitialization.hpp>
 #include <inco/niocs/test/XSomething.hpp>
  
+// Import LimeReport
+#include "lrreportengine.h"
  
 using namespace ::rtl; // for OUString
 using namespace ::com::sun::star; // for sdk interfaces

@@ -46,6 +46,10 @@ add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/inc/SimpleComponent/inco/niocs/t
 add_library(service1_impl OBJECT service1_impl.cxx)
 add_library(service2_impl OBJECT service2_impl.cxx)
 
+add_subdirectory(${PROJECT_SOURCE_DIR}/LimeReport)
+#target_link_libraries(service1_impl PRIVATE limereport-qt${QT_VERSION_MAJOR})
+target_link_libraries(service1_impl PRIVATE limereport-qt5)
+
 add_library(SimpleComponent.uno SHARED service1_impl service2_impl)
 set_target_properties(SimpleComponent.uno 
 	              PROPERTIES PREFIX "" 
@@ -75,6 +79,7 @@ target_link_libraries(SimpleComponent.uno
 	uno_sal
 	uno_cppu
 	uno_cppuhelpergcc3
+	limereport-qt5
 )
 
 # This xml file tells LO extension manager where to find the rdb file and a file 
