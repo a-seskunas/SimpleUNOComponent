@@ -41,7 +41,15 @@
 #include <com/sun/star/lang/XInitialization.hpp>
 #include <inco/niocs/test/XSomething.hpp>
  
- 
+// For KDReports
+#include <QApplication>
+#include <QDebug>
+
+#include <KDReportsPreviewDialog.h>
+#include <KDReportsReport.h>
+#include <KDReportsTextElement.h>
+#include <QPrintDialog>
+
 using namespace ::rtl; // for OUString
 using namespace ::com::sun::star; // for sdk interfaces
 using namespace ::com::sun::star::uno; // for basic types

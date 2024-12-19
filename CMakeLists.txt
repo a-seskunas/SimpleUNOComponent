@@ -5,7 +5,6 @@ project(SimpleUNOComponent LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# SET LOCATION OF LIBREOFFICE HERE
 set(LOROOT $ENV{HOME}/libreoffice/instdir)
 set(LO $ENV{HOME}/libreoffice)
 
@@ -29,8 +28,7 @@ add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/misc/SimpleComponent/SimpleCompo
 
 # Generate C++ header files (hpp and hdl) for new types and their dependencies from rdb files
 # If a new Service is added to some.idl, it must be added to the command below
-# AUTOMATE ME i.e. If a new service was added to the extension, as this is written, it would have to
-# be manually added in this command
+# AUTOMATE ME
 add_custom_target(GenerateHeaders ALL DEPENDS ${PROJECT_BINARY_DIR}/inc/SimpleComponent/inco/niocs/test/*)
 add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/inc/SimpleComponent/inco/niocs/test/*
 	COMMAND ${LOROOT}/sdk/bin/cppumaker -Gc -O${PROJECT_BINARY_DIR}/inc/SimpleComponent
@@ -57,6 +55,8 @@ add_definitions(-DUNX
 		-DLINUX 
 		-DCPPU_ENV=gcc3
 )
+find_package(KDReports CONFIG REQUIRED)
+target_link_libraries(service1_impl KDReports::kdreports)
 
 include_directories(
     	${PROJECT_SOURCE_DIR}
@@ -75,6 +75,7 @@ target_link_libraries(SimpleComponent.uno
 	uno_sal
 	uno_cppu
 	uno_cppuhelpergcc3
+	KDReports::kdreports	
 )
 
 # This xml file tells LO extension manager where to find the rdb file and a file 
