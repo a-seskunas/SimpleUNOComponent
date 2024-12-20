@@ -28,6 +28,7 @@ Step 5. All of the prerequests should be fulfilled, we will now build the Simple
 ```
    $mkdir extensions; cd exetensions
    $git clone https://github.com/a-seskunas/SimpleUNOComponent.git
+   $git checkout KDReports
    $cd SimpleUNOCompnent
    $mkdir build; cd build;
    $cmake ..
