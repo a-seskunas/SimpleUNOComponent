@@ -42,4 +42,3 @@ and add access to the KDReports library.
    4. Open the SimpleComponent.ods file located in root directory of the repository
    5. When asked, agree to open the file with macros enabled
    6. Click the big grey button and a window should appear with the appropriate text
-
