@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # SET LOCATION OF LIBREOFFICE HERE
 set(LOROOT $ENV{HOME}/libreoffice/instdir)
 set(LO $ENV{HOME}/libreoffice)
+set(UNO_PATH ${LOROOT}/program)
 
 SET(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -43,6 +44,7 @@ add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/inc/SimpleComponent/inco/niocs/t
 	DEPENDS ${PROJECT_BINARY_DIR}/misc/SimpleComponent/SimpleComponent.rdb
 )
 
+add_executable(TestSimpleComponent TestSimpleComponent.cxx)
 add_library(service1_impl OBJECT service1_impl.cxx)
 add_library(service2_impl OBJECT service2_impl.cxx)
 
@@ -80,6 +82,18 @@ target_link_libraries(SimpleComponent.uno
 	uno_cppu
 	uno_cppuhelpergcc3
 	limereport-qt5
+)
+
+target_link_directories(TestSimpleComponent PRIVATE
+	${LOROOT}/program
+	${LOROOT}/sdk/lib
+	${PROJECT_BINARY_DIR}/lib
+)
+
+target_link_libraries(TestSimpleComponent
+	uno_sal
+	uno_cppu
+	uno_cppuhelpergcc3
 )
 
 # This xml file tells LO extension manager where to find the rdb file and a file 
@@ -121,4 +135,11 @@ add_custom_command(OUTPUT SimpleUNOComponent.oxt
 	        ${PROJECT_SOURCE_DIR}/*.cxx 
 		${PROJECT_BINARY_DIR}/misc/SimpleComponent/SimpleComponent.components 
 		${PROJECT_BINARY_DIR}/misc/SimpleComponent/META-INF/manifest.xml
+)
+
+# Custom command to run the test, invoke by typing:  make TestSimpleComponent.run  on the command line
+# The UNO_PATH environment variable must be set in order for this to connect to a running soffice instance
+add_custom_target(TestSimpleComponent.run
+	COMMAND ${CMAKE_COMMAND} -E env "UNO_PATH=${UNO_PATH}" ${PROJECT_BINARY_DIR}/TestSimpleComponent
+	WORKING_DIRECTORY ${LOROOT}/sdk
 )
