@@ -5,9 +5,12 @@ project(SimpleUNOComponent LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+##########################################
 # SET LOCATION OF LIBREOFFICE HERE
-set(LOROOT $ENV{HOME}/libreoffice/instdir)
 set(LO $ENV{HOME}/libreoffice)
+##########################################
+
+set(LOROOT ${LO}/instdir)
 set(UNO_PATH ${LOROOT}/program)
 
 SET(CMAKE_INCLUDE_CURRENT_DIR ON)
