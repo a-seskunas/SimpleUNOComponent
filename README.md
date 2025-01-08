@@ -19,6 +19,7 @@ and add access to the LimeReport library.
    ```
    mkdir ~/Extensions; cd ~/Extensions
    git clone https://github.com/a-seskunas/SimpleUNOComponent.git
+   git checkout LimeReport
    ```
 
 4. Clone LimeReport in the SimpleUNOComponent directory.
