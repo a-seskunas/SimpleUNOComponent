@@ -19,33 +19,33 @@ and add access to the LimeReport library.
    ```
    mkdir ~/Extensions; cd ~/Extensions
    git clone https://github.com/a-seskunas/SimpleUNOComponent.git
-   git checkout LimeReport
    ```
 
 4. Clone LimeReport in the SimpleUNOComponent directory.
 
    ```
    cd ~/Extensions/SimpleUNOComponent
+   git checkout LimeReport
    git clone https://github.com/fralx/LimeReport.git 
    ```
 
-5. In order for LimeReport to find a missing header, I had to manually change cmake/modules/GenerateVersionHeader.cmake
+5. In order for LimeReport to find the version.h header and to allow LimeReport to correctly find its version, I had to manually change cmake/modules/GenerateVersionHeader.cmake
+
+   Line 7 reads
+   ```
+   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+   change it to ->
+   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+   ```
    
    Line 25 reads
    ```
    ${CMAKE_SOURCE_DIR}/limereport/version.h.in
    change it to ->
-   ${CMAKE_SOURCE_DIR}/LimeReport/limereport/version.h.in
-   ```
-   Line 26 reads
-   
-   ```
-   ${CMAKE_BINARY_DIR}/limereport/version.h
-   change it to ->
-   ${CMAKE_BINARY_DIR}/LimeReport/limereport/version.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/limereport/version.h.in
    ```
 
-6. Now you can use CMake to build the extension and LimeReport should be included in the build
+7. Now you can use CMake to build the extension and LimeReport should be included in the build
    
    ```
    mkdir build; cd build;
