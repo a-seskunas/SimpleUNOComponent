@@ -68,7 +68,6 @@ and add access to the LimeReport library.
        5. When asked, agree to open the file with macros enabled
        6. Click the big grey button and a window should appear with the appropriate text
 
-
 ## Testing
 After building using the steps above, the TestSimpleComponent file will be available in the build directory. This test can be used instead of manually testing the extension as described above using SimpleComponent.ods. To run TestSimpleComponent, make sure you are located in the build directory and type
 
